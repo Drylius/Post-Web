@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -11,14 +12,13 @@ use App\Http\Controllers\DashboardPostController;
 Route::get('/', function () {
     return view('home',[
         'title' => 'Home',
-        'active' => 'Home',
+        'posts' => Post::latest()->get()
     ]);
-})->name('home');
+})->name('home')->middleware('auth');
 
 Route::get('/about', function () {
     return view('about', [
         'title' => 'About',
-        'active'=> 'About',
         'name' => 'Drylius Christian Cong',
         'email' => 'dryliuschristianc@gmail.com',
         'image' => 'cat.jpg'
@@ -31,7 +31,6 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/categories', function(){
     return view('categories',[
         "title"=> "Post Categories",
-        "active"=> "Post Categories",
         "categories"=> Category::all() 
     ]);
 });
@@ -45,8 +44,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', function(){
     return view('dashboard.index', [
-        'title'=>'Dashboard',
-        'active'=>''
+        'title'=>'Dashboard'
     ]);
 })->middleware('auth');
 

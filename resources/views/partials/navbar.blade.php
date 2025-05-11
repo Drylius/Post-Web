@@ -6,10 +6,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link {{ ($active === "Home") ? 'active' : '' }}" href="/">Home</a>
-          <a class="nav-link {{ ($active === "About") ? 'active' : '' }}" href="/about">About</a>
-          <a class="nav-link {{ ($active === "posts") ? 'active' : '' }}" href="/posts">Blog</a>
-          <a class="nav-link {{ ($active === "Post Categories") ? 'active' : '' }}" href="/categories">Categories</a>
+          <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
+          <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="/about">About</a>
+          <a class="nav-link {{ Request::is('posts*') ? 'active' : '' }}" href="/posts">Blog</a>
+          <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}" href="/categories">Categories</a>
         </div>
         @auth
         <div class="nav-item dropdown ms-auto">
@@ -29,7 +29,7 @@
         </div>
         @else   
          <div class="navbar-nav ms-auto">
-           <a href="/login" class="nav-link {{ ($active === "login") ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i>Login</a>
+           <a href="/login" class="nav-link {{ Request::is('login') ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i>Login</a>
          </div>
         @endauth
 
