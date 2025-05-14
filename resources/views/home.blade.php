@@ -2,7 +2,8 @@
 
 @section('container')
 
-<h1 class="my-3 text-center" style="font-family: Georgia, 'Times New Roman', Times, serif">Hello! Welcome {{ auth()->user()->name }}, here are the latest posts</h1>
+<h1 class="my-3 text-center" style="font-family: Georgia, 'Times New Roman', Times, serif">Hello! Welcome {{ auth()->user()->name }}</h1>
+<h2 class="text-center" style="font-family: 'Times New Roman', Times, serif">Here are the latest posts</h2>
 <div class="container">
     <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis background-with-transparency" style="background-image: url('{{ asset('storage/' . $posts[0]->image) }}');"> <div class="col-lg-6 px-0"> <h1 class="display-4 fst-italic">{{ $posts[0]->title }}</h1> <p class="lead my-3">{{ $posts[0]->excerpt }}</p> <p class="lead mb-0"><a href="/posts/{{ $posts[0]->slug }}" class="fw-bold text-secondary">Continue reading...</a></p> </div> </div>
 
